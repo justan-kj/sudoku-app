@@ -31,6 +31,7 @@ function BoardComponent() {
       if (fillMode) {
         selected?.setValue(value);
       } else {
+        selected?.setValue("");
         selected?.setCandidate(value);
       }
     }
