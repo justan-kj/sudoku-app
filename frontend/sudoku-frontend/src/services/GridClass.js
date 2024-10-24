@@ -94,9 +94,11 @@ class Grid {
   }
 
   cellsMatching(value) {
-    const cells = this.cells;
-    const matching = cells.filter(
-      (cells) => (cells.value = value || cells.candidates[value])
+    if (value <= 0) {
+      return [];
+    }
+    const matching = this.cells.filter(
+      (cell) => cell.value === value || cell.candidates[value]
     );
     return matching;
   }
