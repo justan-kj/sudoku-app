@@ -1,4 +1,7 @@
 import { useEffect, useState, useContext } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
   const [value, setValue] = useState(cell.value);
@@ -6,8 +9,9 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
 
   useEffect(() => {
     setValue(cell.value);
-
-    board?.selected && changeColor();
+    if (board?.selected) {
+      changeColor();
+    }
   }, [timestamp]);
 
   const changeColor = () => {
@@ -29,6 +33,7 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
     }
     setColor(cellcolor);
   };
+
   const handleClick = () => {
     onClick(cell);
   };
@@ -42,16 +47,42 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
     borderRight: thickR ? "1px solid black" : "0.5px solid lightgray",
     fontSize: "1.6em",
     backgroundColor: color,
+    position: "relative",
+  };
+
+  const candidatesStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateRows: "repeat(3, 1fr)",
+    width: "100%",
+    height: "100%",
+    fontSize: "0.3em",
+    position: "absolute",
+    top: 0,
+    left: 0,
   };
 
   return (
-    <div
-      className="container d-flex p-0 m-0 user-select-none justify-content-center align-items-center"
+    <Container
+      className="d-flex p-0 m-0 user-select-none justify-content-center align-items-center"
       onClick={handleClick}
       style={cellStyle}
     >
-      {value}
-    </div>
+      {value ? (
+        <span>{value}</span>
+      ) : (
+        <div style={candidatesStyle}>
+          {[...Array(9)].map((_, index) => (
+            <div
+              key={index}
+              className="d-flex justify-content-center align-items-center"
+            >
+              {cell.candidates[index + 1] && index + 1}
+            </div>
+          ))}
+        </div>
+      )}
+    </Container>
   );
 }
 

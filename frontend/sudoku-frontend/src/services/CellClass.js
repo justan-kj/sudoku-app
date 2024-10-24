@@ -11,6 +11,17 @@ class Cell {
     this.cell_value = value;
     this.coords = [row_idx, col_idx];
     this.locked = false;
+    this.candidates = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+      8: false,
+      9: false,
+    };
   }
   get row() {
     return this.grid.row(this.coords[0]);
@@ -53,6 +64,11 @@ class Cell {
     } else {
       this.grid.modifyCell(this, old_value);
     }
+  }
+
+  setCandidate(value) {
+    this.candidates[value] = !this.candidates[value];
+    console.log(this.candidates);
   }
 }
 
