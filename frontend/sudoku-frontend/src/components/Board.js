@@ -30,6 +30,7 @@ function BoardComponent() {
     } else {
       if (fillMode) {
         selected?.setValue(value);
+        selected?.clearCandidates();
       } else {
         selected?.setValue("");
         selected?.setCandidate(value);

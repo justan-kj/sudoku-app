@@ -70,6 +70,11 @@ class Cell {
     this.candidates[value] = !this.candidates[value];
     console.log(this.candidates);
   }
+  clearCandidates() {
+    Object.keys(this.candidates).forEach((candidate) => {
+      this.candidates[candidate] = false;
+    });
+  }
 
   cellsMatching(value) {
     return this.grid.cellsMatching(value);
