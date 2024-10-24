@@ -70,6 +70,10 @@ class Cell {
     this.candidates[value] = !this.candidates[value];
     console.log(this.candidates);
   }
+
+  cellsMatching(value) {
+    return this.grid.cellsMatching(value);
+  }
 }
 
 export { Cell };
