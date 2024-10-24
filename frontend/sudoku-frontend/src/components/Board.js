@@ -22,12 +22,15 @@ function BoardComponent() {
   board.errors = errors;
 
   const changeValue = useCallback((value) => {
-    if (value > 0) {
-      setErrors([]);
-      selected?.setValue(value);
-    } else {
+    console.log(value);
+    if (value === 0) {
       setErrors([]);
       selected?.setValue("");
+    } else if (value === "check") {
+      setErrors(board.grid.checkErrors());
+    } else {
+      setErrors([]);
+      selected?.setValue(value);
     }
     setTimestamp(Date.now());
   });

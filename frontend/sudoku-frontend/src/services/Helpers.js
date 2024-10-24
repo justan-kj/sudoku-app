@@ -4,8 +4,7 @@ function arrayDupeCheck(cells) {
   var occurrences = {};
   var dupeValues = [];
   var dupeCells = [];
-  console.log("cells");
-  console.log(cells);
+
   for (var i = 0; i < cells.length; i++) {
     if (!cells[i].value) {
       continue;
@@ -15,8 +14,7 @@ function arrayDupeCheck(cells) {
       dupeValues.push(cells[i].value);
     }
   }
-  console.log("dupevalues");
-  console.log(dupeValues);
+
   for (var i = 0; i < cells.length; i++) {
     if (dupeValues.includes(cells[i].value)) {
       dupeCells.push(cells[i]);
@@ -33,8 +31,6 @@ function valueCheck(row, col, box) {
   let valid = true;
   const errors = [];
   const peers = [row, col, box];
-  console.log("peers");
-  console.log(peers);
   peers.forEach((cells) => {
     const result = arrayDupeCheck(cells);
     errors.push(...result);

@@ -56,7 +56,7 @@ function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
           <Button onClick={() => onPress(0)} className="m-1">
             <i className="bi bi-eraser"></i>
           </Button>
-          <Button onClick={() => onPress(0)} className="m-1">
+          <Button onClick={() => onPress("check")} className="m-1">
             <i className="bi bi-check2-circle"></i>
           </Button>
         </div>
