@@ -5,7 +5,8 @@ import Col from "react-bootstrap/Col";
 
 function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
   const [value, setValue] = useState(cell.value);
-  const [color, setColor] = useState("white");
+  const [cellColor, setCellColor] = useState("white");
+  const [candidateColor, setcandidateColor] = useState("white");
 
   useEffect(() => {
     setValue(cell.value);
@@ -19,19 +20,21 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
     const selection = {
       main: selectedCell,
       peers: selectedCell.row.concat(selectedCell.col, selectedCell.box),
+      matches: cell.grid.cellsMatching(selectedCell?.value),
       errors: board?.errors,
     };
-    let cellcolor = "white";
-    if (cell.locked) {
-      cellcolor = "#f2f2f2";
-    } else if (selection["errors"]?.includes(cell)) {
-      cellcolor = "#ffb7c4";
+    let color = "white";
+
+    if (selection["errors"]?.includes(cell)) {
+      color = "#ffb7c4";
     } else if (selection["main"] === cell) {
-      cellcolor = "#b7f0ff";
-    } else if (selection["peers"].includes(cell)) {
-      cellcolor = "#ecf9ff";
+      color = "#f9d68f";
+    } else if (selection["matches"].includes(cell)) {
+      color = "#ace5ff";
+    } else if (cell.locked) {
+      color = "#f2f2f2";
     }
-    setColor(cellcolor);
+    setCellColor(color);
   };
 
   const handleClick = () => {
@@ -46,12 +49,13 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
     borderBottom: "0.5px solid lightgray",
     borderRight: thickR ? "1px solid black" : "0.5px solid lightgray",
     fontSize: "1.6em",
-    backgroundColor: color,
+    backgroundColor: cellColor,
     position: "relative",
   };
 
   const candidatesStyle = {
     display: "grid",
+    backgroundColor: candidateColor,
     gridTemplateColumns: "repeat(3, 1fr)",
     gridTemplateRows: "repeat(3, 1fr)",
     width: "100%",
