@@ -1,0 +1,21 @@
+import { Grid } from "./GridClass";
+
+class Board {
+  grid;
+  name;
+  selected;
+  errors;
+  gridSize;
+  timestamp;
+
+  constructor(name) {
+    this._name = name;
+    this.grid = new Grid(name);
+  }
+
+  import(grid) {
+    this.grid.import(grid);
+  }
+}
+
+export { Board };
