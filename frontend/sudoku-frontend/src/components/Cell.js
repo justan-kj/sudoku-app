@@ -56,7 +56,7 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
     gridTemplateRows: "repeat(3, 1fr)",
     width: "100%",
     height: "100%",
-    fontSize: "0.3em",
+    fontSize: "0.35em",
     position: "absolute",
     top: 0,
     left: 0,
