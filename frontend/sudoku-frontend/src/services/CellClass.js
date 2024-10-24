@@ -68,6 +68,9 @@ class Cell {
   }
 
   setCandidate(value) {
+    if (this.locked) {
+      return;
+    }
     this.candidates[value] = !this.candidates[value];
     console.log(this.candidates);
   }
