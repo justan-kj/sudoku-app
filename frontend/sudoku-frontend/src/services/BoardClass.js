@@ -7,6 +7,7 @@ class Board {
   errors;
   gridSize;
   timestamp;
+  history;
 
   constructor(name) {
     this._name = name;

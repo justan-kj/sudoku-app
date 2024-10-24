@@ -30,7 +30,7 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
     } else if (selectedCell === cell) {
       color = "#f9d68f";
     } else if (selection["matches"].includes(cell)) {
-      color = "#ace5ff";
+      color = "#b5e4fa";
     } else if (cell.locked) {
       color = "#f2f2f2";
     }

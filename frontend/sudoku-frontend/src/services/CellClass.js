@@ -1,5 +1,5 @@
 import { valueCheck, getGridIndex } from "./Helpers";
-import { Grid } from "./GridClass";
+
 class Cell {
   coords;
   cell_value;
@@ -56,6 +56,7 @@ class Cell {
     }
     if (!check) {
       this.cell_value = new_value;
+      this.candidateElimination(new_value);
       return;
     }
     if (this.check()) {
@@ -78,6 +79,15 @@ class Cell {
 
   cellsMatching(value) {
     return this.grid.cellsMatching(value);
+  }
+
+  candidateElimination(value) {
+    const peers = this.row.concat(this.col, this.box);
+    peers.forEach((cell) => {
+      if (cell.candidates[value]) {
+        cell.candidates[value] = false;
+      }
+    });
   }
 }
 
