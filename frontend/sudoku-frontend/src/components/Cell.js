@@ -27,7 +27,7 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
 
     if (selection["errors"]?.includes(cell)) {
       color = "#ffb7c4";
-    } else if (selection["main"] === cell) {
+    } else if (selectedCell === cell) {
       color = "#f9d68f";
     } else if (selection["matches"].includes(cell)) {
       color = "#ace5ff";
@@ -55,7 +55,7 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
 
   const candidatesStyle = {
     display: "grid",
-    backgroundColor: candidateColor,
+    backgroundColor: cellColor,
     gridTemplateColumns: "repeat(3, 1fr)",
     gridTemplateRows: "repeat(3, 1fr)",
     width: "100%",
