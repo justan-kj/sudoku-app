@@ -16,7 +16,7 @@ function BoardComponent() {
   const [errors, setErrors] = useState();
   //Dummy state to trigger rerenders. Maybe I'll use it for logging later?
   const [timestamp, setTimestamp] = useState(Date.now());
-
+  const [fillMode, setFillMode] = useState(true);
   board.gridSize = gridSize;
   board.selected = selected;
   board.errors = errors;
@@ -37,6 +37,10 @@ function BoardComponent() {
     setErrors([]);
     setSelected(selected_cell);
     setTimestamp(Date.now());
+  };
+  const toggleFillMode = () => {
+    setFillMode(!fillMode);
+    console.log(fillMode);
   };
 
   const checkGrid = () => {
@@ -81,7 +85,12 @@ function BoardComponent() {
         )}
       </Card.Body>
       <Card.Footer>
-        <Controls onPress={changeValue} onHotkeyPress={handleKeyPress} />
+        <Controls
+          onPress={changeValue}
+          onHotkeyPress={handleKeyPress}
+          fillMode={fillMode}
+          toggle={toggleFillMode}
+        />
       </Card.Footer>
     </Card>
   );

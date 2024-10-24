@@ -1,8 +1,8 @@
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useCallback, useEffect } from "react";
-
-function Controls({ onPress, onHotkeyPress }) {
+import ToggleButton from "react-bootstrap/ToggleButton";
+function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
   useEffect(() => {
     document.addEventListener("keydown", onHotkeyPress);
     return () => {
@@ -29,6 +29,16 @@ function Controls({ onPress, onHotkeyPress }) {
           <Button onClick={() => onPress(5)} className="m-1">
             5
           </Button>
+          <ToggleButton
+            id="toggle-check"
+            type="checkbox"
+            variant="secondary"
+            checked={fillMode}
+            value="1"
+            onChange={(e) => toggle(e.currentTarget.checked)}
+          >
+            <i className="bi bi-pencil"></i>
+          </ToggleButton>
         </div>
         <div className="container d-flex-inline gap-1">
           <Button onClick={() => onPress(6)} className="m-1">
@@ -44,10 +54,10 @@ function Controls({ onPress, onHotkeyPress }) {
             9
           </Button>
           <Button onClick={() => onPress(0)} className="m-1">
-            X
+            <i className="bi bi-eraser"></i>
           </Button>
           <Button onClick={() => onPress(0)} className="m-1">
-            <i class="bi bi-check2-circle"></i>
+            <i className="bi bi-check2-circle"></i>
           </Button>
         </div>
       </div>
