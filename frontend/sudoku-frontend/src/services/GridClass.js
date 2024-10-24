@@ -86,7 +86,7 @@ class Grid {
     console.log("importing");
 
     [...grid].forEach((digit, i) => {
-      if (digit != ".") {
+      if (digit != "." && digit != "0" && digit != " ") {
         this.cells[i].setValue(Number(digit));
         this.cells[i].locked = true;
       }
