@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Grid from "./Grid";
-import { Board } from "../services/BoardClasses.js";
+import { Board } from "../services/BoardClass.js";
 import Controls from "./Controls";
 import { useEffect, useState, useCallback } from "react";
 import Form from "react-bootstrap/Form";
