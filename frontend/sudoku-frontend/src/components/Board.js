@@ -61,9 +61,12 @@ function BoardComponent() {
   const handleKeyPress = useCallback(
     (event) => {
       const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
+      console.log(event.key);
       if (numbers.includes(Number(event.key))) {
         changeValue(Number(event.key));
+      }
+      if (event.key === "Shift") {
+        toggleFillMode();
       }
     },
     [changeValue]
