@@ -92,6 +92,14 @@ class Grid {
       }
     });
   }
+
+  cellsMatching(value) {
+    const cells = this.cells;
+    const matching = cells.filter(
+      (cells) => (cells.value = value || cells.candidates[value])
+    );
+    return matching;
+  }
 }
 
 export { Grid };
