@@ -31,6 +31,8 @@ function Cell({ size, thickT, thickR, cell, onClick, timestamp, board }) {
       color = "#f9d68f";
     } else if (selection["matches"].includes(cell)) {
       color = "#b5e4fa";
+      // } else if (selection["peers"].includes(cell)) {
+      //   color = "#f5fcff";
     } else if (cell.locked) {
       color = "#f2f2f2";
     }
