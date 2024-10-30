@@ -2,10 +2,10 @@ import Cell from "./Cell";
 import { useState } from "react";
 
 function Grid({ grid, board, changeSelection, timestamp }) {
-  const size = board.gridSize * 0.2 + 30;
+  const size = board.gridSize * 0.4 + 30;
   const getGrid = () => {
     return (
-      <>
+      <div className="p-2">
         {[...Array(9)].map((_, rowIndex) => (
           <div key={rowIndex} className="d-flex">
             {[...Array(9)].map((_, colIndex) => {
@@ -26,7 +26,7 @@ function Grid({ grid, board, changeSelection, timestamp }) {
             })}
           </div>
         ))}
-      </>
+      </div>
     );
   };
 
