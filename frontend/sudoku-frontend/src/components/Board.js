@@ -1,13 +1,13 @@
 import Card from "react-bootstrap/Card";
 import Grid from "./Grid";
 import { Board } from "../services/BoardClass.js";
-import Controls from "./Controls";
+import Controls from "./BottomControls.js";
 import { useEffect, useState, useCallback } from "react";
 import Form from "react-bootstrap/Form";
 
 const board = new Board("main");
 board.import(
-  "..24....1.3......47....3.5..261.....9........4..67.....1....9.7...5....6...361..."
+  ".8...612.2...34..7.7..9.........2.344.3.6......8....6.........2.6...8.4....9....8"
 );
 console.log(board);
 function BoardComponent() {
@@ -73,7 +73,7 @@ function BoardComponent() {
   );
 
   return (
-    <Card className="w-75 h-75 m-1 ">
+    <Card className="d-flex h-75 m-1 ">
       <Card.Header>
         <h2>Sudoku</h2>
         <>
@@ -84,24 +84,25 @@ function BoardComponent() {
           />
         </>
       </Card.Header>
-      <Card.Body className="d-flex justify-content-center ">
-        {board?.grid && (
-          <Grid
-            grid={board?.grid}
-            changeSelection={changeSelection}
-            board={board}
-            timestamp={timestamp}
+      <Card.Body className="justify-content-left p-0">
+        <div className="d-flex justify-content-left flex-row">
+          {board?.grid && (
+            <Grid
+              grid={board?.grid}
+              changeSelection={changeSelection}
+              board={board}
+              timestamp={timestamp}
+            />
+          )}
+          <Controls
+            onPress={changeValue}
+            onHotkeyPress={handleKeyPress}
+            fillMode={fillMode}
+            toggle={toggleFillMode}
           />
-        )}
+        </div>
       </Card.Body>
-      <Card.Footer>
-        <Controls
-          onPress={changeValue}
-          onHotkeyPress={handleKeyPress}
-          fillMode={fillMode}
-          toggle={toggleFillMode}
-        />
-      </Card.Footer>
+      <Card.Footer></Card.Footer>
     </Card>
   );
 }
