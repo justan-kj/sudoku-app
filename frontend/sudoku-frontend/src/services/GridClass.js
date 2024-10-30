@@ -74,11 +74,13 @@ class Grid {
 
   checkErrors() {
     const errors = [];
-    this.cells.forEach((cell) => {
-      if (!cell.check(cell.value)) {
-        errors.push(cell);
-      }
-    });
+    for (let i = 1; i <= 9; i++) {
+      const found = valueCheck(this.row(i), this.col(i), this.box(i));
+      console.log(found);
+      const foundErrors = found["errors"];
+      errors.push(...foundErrors);
+    }
+    console.log(errors);
     return errors;
   }
 
