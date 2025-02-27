@@ -1,8 +1,18 @@
 import Cell from "./Cell";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Grid({ grid, board, changeSelection, timestamp }) {
   const size = board.gridSize * 0.2 + 30;
+
+  // Trigger initial cell selection to ensure proper shading
+  useEffect(() => {
+    if (grid && !board.selected) {
+      // Select the first non-fixed cell, or first cell if all are fixed
+      const firstCell = grid.cells.find(cell => !cell.fixed) || grid.cells[0];
+      changeSelection(firstCell);
+    }
+  }, [grid, board.selected, changeSelection]);
+
   const getGrid = () => {
     return (
       <>
