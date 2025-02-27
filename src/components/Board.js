@@ -3,9 +3,9 @@ import Grid from "./Grid";
 import { Board } from "../services/BoardClass.js";
 import Controls from "./Controls";
 import { useEffect, useState, useCallback } from "react";
-import Form from "react-bootstrap/Form";
-
+import SettingsPane from "./SettingsPane.js";
 const board = new Board("main");
+
 board.import(
   "..24....1.3......47....3.5..261.....9........4..67.....1....9.7...5....6...361..."
 );
@@ -76,13 +76,7 @@ function BoardComponent() {
     <Card className="w-75 h-75 m-1 ">
       <Card.Header>
         <h2>Sudoku</h2>
-        <>
-          <Form.Label>Grid Size</Form.Label>
-          <Form.Range
-            value={gridSize}
-            onChange={(e) => changeGridSize(e.target.value)}
-          />
-        </>
+        <SettingsPane gridSize={gridSize} setGridSize={setGridSize} />
       </Card.Header>
       <Card.Body className="d-flex justify-content-center ">
         {board?.grid && (
