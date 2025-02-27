@@ -1,6 +1,6 @@
 # React Sudoku
 
-A modern Sudoku implementation built with React and Bootstrap. Play it here: [React Sudoku](https://[your-github-username].github.io/react-sudoku/)
+A modern Sudoku implementation built with React and Bootstrap. Play it here: [React Sudoku](https://justan-kj.github.io/sudoku-app/)
 
 ![Sudoku Game Screenshot](public/screenshot.png)
 
