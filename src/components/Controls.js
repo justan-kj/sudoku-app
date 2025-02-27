@@ -11,16 +11,9 @@ function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
     };
   }, [onHotkeyPress]);
 
-  const renderNumButton = (num) => (
-    <Button onClick={() => onPress(num)} className="m-1 col-1">
-      {num}
-    </Button>
-  );
-
   return (
-    <div className="container w-75">
+    <div className="container w-75 ">
       <div className="d-flex flex-column align-items-center">
-        {/* Numpad Grid */}
         <div className="mb-3 w-100">
           <div className="row justify-content-center gap-2">
             {[1, 2, 3].map((num) => (
@@ -44,10 +37,20 @@ function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
             ))}
           </div>
         </div>
-
-        {/* Controls Panel */}
         <div className="p-2 col-auto">
           <div className="d-flex flex-column gap-2">
+            <Button
+              onClick={() => onPress("check")}
+              className="d-flex align-items-center gap-2">
+              <i className="bi bi-check2-circle"></i>
+              <span>Check</span>
+            </Button>
+            <Button
+              onClick={() => onPress(0)}
+              className="d-flex align-items-center gap-2">
+              <i className="bi bi-eraser"></i>
+              <span>Erase</span>
+            </Button>{" "}
             <div className="p-2">
               <h6 className="text-center mb-2">Fill Mode</h6>
               <Form.Check
@@ -69,18 +72,6 @@ function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
                 onChange={() => toggle(1)}
               />
             </div>
-            <Button
-              onClick={() => onPress("check")}
-              className="d-flex align-items-center gap-2">
-              <i className="bi bi-check2-circle"></i>
-              <span>Check</span>
-            </Button>
-            <Button
-              onClick={() => onPress(0)}
-              className="d-flex align-items-center gap-2">
-              <i className="bi bi-eraser"></i>
-              <span>Erase</span>
-            </Button>
           </div>
         </div>
       </div>
