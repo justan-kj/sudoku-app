@@ -1,7 +1,8 @@
 import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Form from "react-bootstrap/Form";
 import { useCallback, useEffect } from "react";
 import ToggleButton from "react-bootstrap/ToggleButton";
+
 function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
   useEffect(() => {
     document.addEventListener("keydown", onHotkeyPress);
@@ -10,62 +11,78 @@ function Controls({ onPress, onHotkeyPress, fillMode, toggle }) {
     };
   }, [onHotkeyPress]);
 
+  const renderNumButton = (num) => (
+    <Button onClick={() => onPress(num)} className="m-1 col-1">
+      {num}
+    </Button>
+  );
+
   return (
     <div className="container w-75">
-      <div className="row justify-content-center">
-        <Button onClick={() => onPress(1)} className="m-1 col-1">
-          1
-        </Button>
-        <Button onClick={() => onPress(2)} className="m-1 col-1">
-          2
-        </Button>
-        <Button onClick={() => onPress(3)} className="m-1 col-1">
-          3
-        </Button>
-        <ToggleButton
-          id="toggle-check"
-          type="checkbox"
-          variant="secondary"
-          checked={fillMode}
-          value="1"
-          onChange={(e) => toggle(e.currentTarget.checked)}
-          style={{
-            backgroundColor: fillMode ? "#0d6efd" : "#6c757d",
-            color: "white",
-          }}
-          className="m-1 col-1"
-        >
-          <i className="bi bi-pencil"></i>
-        </ToggleButton>
-      </div>
-      <div className="row justify-content-center">
-        <Button onClick={() => onPress(4)} className="m-1 col-1">
-          4
-        </Button>
-        <Button onClick={() => onPress(5)} className="m-1 col-1">
-          5
-        </Button>
-        <Button onClick={() => onPress(6)} className="m-1 col-1">
-          6
-        </Button>
-        <Button onClick={() => onPress(0)} className="m-1 col-1">
-          <i className="bi bi-eraser"></i>
-        </Button>
-      </div>
-      <div className="row  justify-content-center">
-        <Button onClick={() => onPress(7)} className="m-1 col-1">
-          7
-        </Button>
-        <Button onClick={() => onPress(8)} className="m-1 col-1">
-          8
-        </Button>
-        <Button onClick={() => onPress(9)} className="m-1 col-1">
-          9
-        </Button>
+      <div className="d-flex flex-column align-items-center">
+        {/* Numpad Grid */}
+        <div className="mb-3 w-100">
+          <div className="row justify-content-center gap-2">
+            {[1, 2, 3].map((num) => (
+              <Button key={num} onClick={() => onPress(num)} className="col">
+                {num}
+              </Button>
+            ))}
+          </div>
+          <div className="row justify-content-center gap-2 my-2">
+            {[4, 5, 6].map((num) => (
+              <Button key={num} onClick={() => onPress(num)} className="col">
+                {num}
+              </Button>
+            ))}
+          </div>
+          <div className="row justify-content-center gap-2">
+            {[7, 8, 9].map((num) => (
+              <Button key={num} onClick={() => onPress(num)} className="col">
+                {num}
+              </Button>
+            ))}
+          </div>
+        </div>
 
-        <Button onClick={() => onPress("check")} className="m-1 col-1">
-          <i className="bi bi-check2-circle"></i>
-        </Button>
+        {/* Controls Panel */}
+        <div className="p-2 col-auto">
+          <div className="d-flex flex-column gap-2">
+            <div className="p-2">
+              <h6 className="text-center mb-2">Fill Mode</h6>
+              <Form.Check
+                type="radio"
+                id="candidates-mode"
+                label="Candidates"
+                name="fillMode"
+                checked={!fillMode}
+                className="text-start"
+                onChange={() => toggle(0)}
+              />
+              <Form.Check
+                type="radio"
+                id="values-mode"
+                label="Values"
+                name="fillMode"
+                checked={fillMode}
+                className="text-start"
+                onChange={() => toggle(1)}
+              />
+            </div>
+            <Button
+              onClick={() => onPress("check")}
+              className="d-flex align-items-center gap-2">
+              <i className="bi bi-check2-circle"></i>
+              <span>Check</span>
+            </Button>
+            <Button
+              onClick={() => onPress(0)}
+              className="d-flex align-items-center gap-2">
+              <i className="bi bi-eraser"></i>
+              <span>Erase</span>
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

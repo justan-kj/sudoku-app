@@ -73,29 +73,34 @@ function BoardComponent() {
   );
 
   return (
-    <Card className="w-75 h-75 m-1 ">
+    <Card className="w-75 h-75 m-1">
       <Card.Header>
         <h2>Sudoku</h2>
         <SettingsPane gridSize={gridSize} setGridSize={setGridSize} />
       </Card.Header>
-      <Card.Body className="d-flex justify-content-center ">
-        {board?.grid && (
-          <Grid
-            grid={board?.grid}
-            changeSelection={changeSelection}
-            board={board}
-            timestamp={timestamp}
+      <Card.Body className="d-flex gap-3">
+        {/* Grid Section */}
+        <div className="flex-grow-1 d-flex justify-content-center">
+          {board?.grid && (
+            <Grid
+              grid={board?.grid}
+              changeSelection={changeSelection}
+              board={board}
+              timestamp={timestamp}
+            />
+          )}
+        </div>
+
+        {/* Controls Section */}
+        <div className="d-flex align-items-center">
+          <Controls
+            onPress={changeValue}
+            onHotkeyPress={handleKeyPress}
+            fillMode={fillMode}
+            toggle={toggleFillMode}
           />
-        )}
+        </div>
       </Card.Body>
-      <Card.Footer>
-        <Controls
-          onPress={changeValue}
-          onHotkeyPress={handleKeyPress}
-          fillMode={fillMode}
-          toggle={toggleFillMode}
-        />
-      </Card.Footer>
     </Card>
   );
 }
