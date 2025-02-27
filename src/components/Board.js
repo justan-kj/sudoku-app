@@ -4,6 +4,7 @@ import { Board } from "../services/BoardClass.js";
 import Controls from "./Controls";
 import { useEffect, useState, useCallback } from "react";
 import SettingsPane from "./SettingsPane.js";
+import Button from "react-bootstrap/Button";
 const board = new Board("main");
 
 board.import(
@@ -17,6 +18,7 @@ function BoardComponent() {
   //Dummy state to trigger rerenders. Maybe I'll use it for logging later?
   const [timestamp, setTimestamp] = useState(Date.now());
   const [fillMode, setFillMode] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
   board.gridSize = gridSize;
   board.selected = selected;
   board.errors = errors;
@@ -74,9 +76,22 @@ function BoardComponent() {
 
   return (
     <Card className="w-75 h-75 m-1">
-      <Card.Header>
+      <Card.Header className="d-flex justify-content-between align-items-center">
         <h2>Sudoku</h2>
-        <SettingsPane gridSize={gridSize} setGridSize={setGridSize} />
+        <div className="d-flex align-items-center gap-2">
+          <Button
+            variant="outline-secondary"
+            onClick={() => setShowSettings(!showSettings)}>
+            <i className="bi bi-gear"></i>
+          </Button>
+          <SettingsPane
+            show={showSettings}
+            onHide={() => setShowSettings(false)}
+            gridSize={gridSize}
+            setGridSize={setGridSize}
+            // Add other settings here
+          />
+        </div>
       </Card.Header>
       <Card.Body className="d-flex gap-3">
         {/* Grid Section */}
