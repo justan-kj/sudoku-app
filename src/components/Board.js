@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from "react";
 import SettingsPane from "./SettingsPane.js";
 import Button from "react-bootstrap/Button";
 import { Toast } from "react-bootstrap";
+import Instructions from "./Instructions";
 const board = new Board("main");
 
 board.import(
@@ -124,15 +125,20 @@ function BoardComponent() {
           </div>
 
           {/* Controls Section */}
-          <div className="d-flex align-items-center">
-            <Controls
-              onPress={changeValue}
-              onHotkeyPress={handleKeyPress}
-              fillMode={fillMode}
-              toggle={toggleFillMode}
-            />
+          <div className="d-flex flex-column">
+            <div className="d-flex align-items-center">
+              <Controls
+                onPress={changeValue}
+                onHotkeyPress={handleKeyPress}
+                fillMode={fillMode}
+                toggle={toggleFillMode}
+              />
+            </div>
           </div>
         </Card.Body>
+        <Card.Footer className="p-0">
+          <Instructions />
+        </Card.Footer>
       </Card>
     </>
   );
